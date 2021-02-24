@@ -7,4 +7,3 @@ Para visualizar o front-end, na pasta do projeto, digitar no terminal **npm i** 
 Do mesmo modo, também deixei mais pacotes node do que o necessário para esse projeto.
 
 Obrigado pela oportunidade :)
-# SmartBreeder-TEST

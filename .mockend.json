@@ -1,0 +1,7 @@
+{
+  "Post": {
+    "id": "int",
+    "title": "string",
+    "color": "string"
+  }
+}

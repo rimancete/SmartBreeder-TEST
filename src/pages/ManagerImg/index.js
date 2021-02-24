@@ -32,8 +32,8 @@ export default function ManagerImg() {
     async function getData() {
       // antes de comunicar com api, informar o loading
       // setIsLoading(true);
-      const response = await axios.get('/photos');
-
+      const response = await axios.get('/posts');
+      console.log(response);
       // enviando dados da api para o app
       setAlunos(response.data);
       // depois de retornar da api retirar o loading
