@@ -21,7 +21,7 @@ export default function ManagerImg() {
   // definindo estado isLoading da página
   const [isLoading, setIsLoading] = useState(false);
   // definindo os estados, dados(api) e forma de manipulação
-  const [alunos, setAlunos] = useState([]);
+  const [images, setImages] = useState([]);
 
   // DIALOG
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
@@ -31,11 +31,10 @@ export default function ManagerImg() {
   React.useEffect(() => {
     async function getData() {
       // antes de comunicar com api, informar o loading
-      // setIsLoading(true);
-      const response = await axios.get('/posts');
-      console.log(response);
+      setIsLoading(true);
+      const response = await axios.get('/images/1/');
       // enviando dados da api para o app
-      setAlunos(response.data);
+      setImages(response.data);
       // depois de retornar da api retirar o loading
       setIsLoading(false);
     }
@@ -50,9 +49,9 @@ export default function ManagerImg() {
       // excluir aluno
       await axios.delete(`/alunos/${id}`);
       // apagar a linha com os dados da página
-      const novosAlunos = [...alunos];
+      const novosAlunos = [...images];
       novosAlunos.splice(index, 1);
-      setAlunos(novosAlunos);
+      setImages(novosAlunos);
       setIsLoading(false);
     } catch (err) {
       const status = get(err, 'response.status', []);
@@ -68,27 +67,27 @@ export default function ManagerImg() {
   return (
     <Container>
       <Loading isLoading={isLoading} />
-      <NovoAluno to="/aluno">
-        Cadastrar Aluno <FaFileAlt size={22} />
+      <NovoAluno to="/album-image">
+        Nova Imagem <FaFileAlt size={22} />
       </NovoAluno>
-      <h1>Alunos</h1>
+      <h1>Imagens</h1>
       {/* exibindo dados da api na página */}
       <ImgContainer>
-        {alunos.map((aluno, index) => (
-          <div key={String(aluno.id)}>
-            {/* Se o aluno não tiver foto, exibir ícone */}
-            {/* <ProfilePicture>
-              {get(aluno, 'Photos[0].url', false) ? (
-                <img src={aluno.Photos[0].url} alt="" />
+        {images.map((image, index) => (
+          <div key={String(image.id)}>
+            {/* Se o image não tiver foto, exibir ícone */}
+            <ProfilePicture>
+              {image.url ? (
+                <img src={image.url} alt="" />
               ) : (
                 <FaUserCircle className="within-pic" size={50} />
               )}
-            </ProfilePicture> */}
+            </ProfilePicture>
             {/* Coletando dados da api */}
-            <span>{aluno.nome}</span>
-            <span>{aluno.email}</span>
+            <span>{image.title}</span>
+            <span>{image.id}</span>
             {/* Inserindo link para edição e exclusão de alunos */}
-            <Link to={`/aluno/${aluno.id}/edit`}>
+            <Link to={`/album-image/${image.id}/edit`}>
               <FaEdit size={24} />
             </Link>
             <Link onClick={() => setDialogIsOpen(true)} to="/">
@@ -98,7 +97,7 @@ export default function ManagerImg() {
                 children="Após exclusão, todos os dados do aluno serão excluídos definitivamente."
                 open={dialogIsOpen}
                 setOpen={openDialog}
-                onConfirm={(e) => handleDelete(e, aluno.id, index)}
+                onConfirm={(e) => handleDelete(e, image.id, index)}
                 onClose={closeDialog}
               />
             </Link>

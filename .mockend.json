@@ -1,5 +1,5 @@
 {
-  "Post": {
+  "Image": {
     "id": "int",
     "title": "string",
     "color": "string"
