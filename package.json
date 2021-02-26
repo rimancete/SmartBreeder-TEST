@@ -1,8 +1,8 @@
 {
-  "name": "escola",
-  "version": "1.0.2",
-  "description": "Aplicação REACT que consome dados de API-REST",
-  "homepage": "https://escola.lojardente.com/",
+  "name": "smartbreeder-test",
+  "version": "1.0.1",
+  "description": "Aplicação REACT que consome dados de múltiplas API-REST",
+  "homepage": "http://localhost:3000/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.2",

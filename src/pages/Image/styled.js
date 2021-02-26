@@ -25,7 +25,7 @@ export const Form = styled.form`
   }
 `;
 
-export const ProfilePicture = styled.div`
+export const Picture = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// componente link usado para criação de novo aluno na página 'ALunos'
+// componente link usado para criação de nova imagem na página 'Image'
 import { Link } from 'react-router-dom';
 
 export const ImgContainer = styled.div`
@@ -15,13 +15,16 @@ export const ImgContainer = styled.div`
       position: relative;
       bottom: 5px;
     }
+    .title {
+      width: 60%;
+    }
   }
-  /*Inserindo borda para separar cada aluno, retirando do primeiro */
+  /*Inserindo borda para separar cada imagem, retirando do primeiro */
   div + div {
     border-top: 1px solid #eee;
   }
 `;
-export const ProfilePicture = styled.div`
+export const ThumbImage = styled.div`
   img {
     width: 50px;
     height: 50px;
@@ -29,8 +32,8 @@ export const ProfilePicture = styled.div`
   }
 `;
 
-// Componente react (Link) da página 'Alunos'
-export const NovoAluno = styled(Link)`
+// Componente react (Link) da página 'Image'
+export const NewImage = styled(Link)`
   display: block;
   padding: 5px 0;
   text-align: right;

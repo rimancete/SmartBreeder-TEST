@@ -5,24 +5,23 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 // importar componentes para validação dos campos
 import { toast } from 'react-toastify';
-import { isEmail, isInt, isFloat } from 'validator';
+import { isInt } from 'validator';
 
 // importando componentes para consumo da api
 import { useDispatch } from 'react-redux';
 import { FaUserCircle, FaCamera } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+// importando axios da api de imagens sugerida no teste
 import axios from '../../services/axios';
 import history from '../../services/history';
 import * as actions from '../../store/modules/auth/actions';
-
-// ICONS
 
 // LOADING
 import Loading from '../../components/Loading';
 
 // STYLES
 import { Container } from '../../styles/GlobalStyles';
-import { Form, ProfilePicture, Title } from './styled';
+import { Form, Picture, Title } from './styled';
 
 export default function Image({ match }) {
   const dispatch = useDispatch();
@@ -68,8 +67,8 @@ export default function Image({ match }) {
 
     // validação de campos
     let formErrors = false;
-    if (title.length < 3 || title.length > 20) {
-      toast.error('Título deve ter entre 3 e 20 caracteres');
+    if (title.length < 3 || title.length > 100) {
+      toast.error('Título deve ter entre 3 e 100 caracteres');
       formErrors = true;
     }
     if (!isInt(String(idImg))) {
@@ -86,6 +85,7 @@ export default function Image({ match }) {
           id,
           title,
         });
+        // LOG DO PACTH
         console.log('Update response', updateImg);
         toast.success('Imagem editada com sucesso');
         history.push('/');
@@ -95,6 +95,7 @@ export default function Image({ match }) {
           title,
           id,
         });
+        // LOG DO POST
         console.log('Create response', data);
         toast.success('Imagem criada com sucesso');
         history.push(`/image/${data.id}/edit`);
@@ -118,12 +119,13 @@ export default function Image({ match }) {
     <Container>
       <Loading isLoading={isLoading} />
       {id && (
-        <ProfilePicture>
+        <Picture>
           {foto ? <img src={foto} alt={title} /> : <FaUserCircle size={180} />}
-          <Link to={`/fotos/${id}`}>
+          {/* Chamada para alteração da imagem - DESATIVADA */}
+          {/* <Link to={`/fotos/${id}`}>
             <FaCamera size={18} />
-          </Link>
-        </ProfilePicture>
+          </Link> */}
+        </Picture>
       )}
       <Title>{id ? 'Editar Imagem' : 'Nova Imagem'}</Title>
       <Form onSubmit={handleSubmit}>

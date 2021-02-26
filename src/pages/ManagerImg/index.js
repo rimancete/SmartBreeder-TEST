@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 // importando lodash => tratamento excessão
 import { get } from 'lodash';
-// importando ícones que serão exibidos no lugar de fotos inexistentes de alunos
+// importando ícones que serão exibidos no lugar de fotos inexistentes de cada imagem
 import { FaUserCircle, FaEdit, FaFileAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { Container } from '../../styles/GlobalStyles';
-import { ImgContainer, ProfilePicture, NovoAluno } from './styled';
+import { ImgContainer, ThumbImage, NewImage } from './styled';
 // importando componentes para consumo da api
 import axios from '../../services/axios';
 
@@ -41,7 +41,7 @@ export default function ManagerImg() {
     getData();
   }, []);
 
-  // criando função que realiza a exclusão do aluno
+  // criando função que realiza a exclusão da imagem
   const handleDelete = async (e, id, index) => {
     e.persist();
     try {
@@ -67,24 +67,24 @@ export default function ManagerImg() {
   return (
     <Container>
       <Loading isLoading={isLoading} />
-      <NovoAluno to="/image">
+      <NewImage to="/image">
         Nova Imagem <FaFileAlt size={22} />
-      </NovoAluno>
+      </NewImage>
       <h1>Imagens</h1>
       {/* exibindo dados da api na página */}
       <ImgContainer>
         {images.map((image, index) => (
           <div key={String(image.id)}>
-            {/* Se o image não tiver foto, exibir ícone */}
-            <ProfilePicture>
+            {/* Se a imagem não tiver foto, exibir ícone */}
+            <ThumbImage>
               {image.url ? (
                 <img src={image.url} alt="" />
               ) : (
                 <FaUserCircle className="within-pic" size={50} />
               )}
-            </ProfilePicture>
+            </ThumbImage>
             {/* Coletando dados da api */}
-            <span>{image.title}</span>
+            <span className="title">{image.title}</span>
             <span>{image.id}</span>
             {/* Inserindo link para edição e exclusão de alunos */}
             <Link to={`/image/${image.id}/edit`}>
@@ -92,9 +92,9 @@ export default function ManagerImg() {
             </Link>
             <Link onClick={() => setDialogIsOpen(true)} to="/">
               <AlertDialog
-                title="Deseja realmente deletar o aluno selecionado?"
+                title="Deseja realmente deletar a imagem selecionada?"
                 // eslint-disable-next-line react/no-children-prop
-                children="Após exclusão, todos os dados do aluno serão excluídos definitivamente."
+                children="Após exclusão, todos os dados da imagem serão excluídos definitivamente."
                 open={dialogIsOpen}
                 setOpen={openDialog}
                 onConfirm={(e) => handleDelete(e, image.id, index)}

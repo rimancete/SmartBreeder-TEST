@@ -5,12 +5,11 @@ import { toast } from 'react-toastify';
 import { isEmail } from 'validator';
 
 // API
-// importar axios para comunicação com API e dispatch para direcionamento de rota da aplicação
+// importar componentes para comunicação com API e dispatch para direcionamento de rota da aplicação
 import { useSelector, useDispatch } from 'react-redux';
 // importar actions redux
 import * as actions from '../../store/modules/auth/actions';
 
-// importando componentes para consumo da api
 // import axios from '../../services/axios';
 import axios from '../../services/loginAxios';
 import history from '../../services/history';
@@ -24,8 +23,6 @@ import { Form, ExcluirPerfil } from './styled';
 
 // DIALOG
 import AlertDialog from '../../components/Dialog';
-
-// importar JSON de credenciais
 
 export default function Register() {
   // coletando dados, selecionados, do usuário logado

@@ -6,7 +6,7 @@ export default (reducers) => {
   const persistedReducers = persistReducer(
     {
       // nome da aplicação
-      key: 'CONSUMIRAPI',
+      key: 'CONSUMIRAPIS',
       // local de armazenamento
       storage,
       // modulos que queremos salvar => inserir do rootReducer
