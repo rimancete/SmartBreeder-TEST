@@ -82,11 +82,13 @@ export default function Image({ match }) {
       setIsLoading(true);
       // se tem id é uma edição
       if (id) {
-        const updateImg = await axios.patch(`/albums/1/photos?id=${id}`, {
+        const updateImg = await axios.patch(`/albums/1/`, {
+          id,
           title,
         });
         console.log('Update response', updateImg);
         toast.success('Imagem editada com sucesso');
+        history.push('/');
       } else {
         // se não tem id é uma criação
         const { data } = await axios.post(`/albums/1/photos/`, {
@@ -95,7 +97,7 @@ export default function Image({ match }) {
         });
         console.log('Create response', data);
         toast.success('Imagem criada com sucesso');
-        history.push(`/album-image/${data.id}/edit`);
+        history.push(`/image/${data.id}/edit`);
       }
       setIsLoading(false);
       // se der erro, tratar

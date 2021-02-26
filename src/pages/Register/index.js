@@ -11,7 +11,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as actions from '../../store/modules/auth/actions';
 
 // importando componentes para consumo da api
-import axios from '../../services/axios';
+// import axios from '../../services/axios';
+import axios from '../../services/loginAxios';
 import history from '../../services/history';
 
 // LOADING
@@ -23,6 +24,8 @@ import { Form, ExcluirPerfil } from './styled';
 
 // DIALOG
 import AlertDialog from '../../components/Dialog';
+
+// importar JSON de credenciais
 
 export default function Register() {
   // coletando dados, selecionados, do usuário logado

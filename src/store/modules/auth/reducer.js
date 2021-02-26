@@ -1,7 +1,8 @@
 // importando types
 import * as types from '../types';
 // importando axios para excluir chave auth do header
-import axios from '../../../services/axios';
+// import axios from '../../../services/axios';
+import axios from '../../../services/loginAxios';
 // criando estado inicial
 const initialState = {
   isLoggedIn: false,

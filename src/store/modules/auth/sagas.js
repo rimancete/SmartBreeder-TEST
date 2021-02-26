@@ -10,14 +10,17 @@ import { get } from 'lodash';
 import * as actions from './actions';
 // importar types
 import * as types from '../types';
-import axios from '../../../services/axios';
+import axios from '../../../services/loginAxios';
 import history from '../../../services/history';
+// importar JSON de credenciais
 
 // função geradora que dispara ações
 // criando função que envia o payload para o '/tokens/' da API fazer o login
 function* loginRequest({ payload }) {
   // console.log('SAGA', payload);
   try {
+    // chamando api de login
+
     const response = yield call(axios.post, '/tokens', payload);
     /* se o response for criado, chama a action de sucesso do reducer.
     Se erro, cairá no bloco catch

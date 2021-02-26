@@ -13,9 +13,9 @@ import Page404 from '../pages/Page404';
 export default function Routes() {
   return (
     <Switch>
-      <MyRoute exact path="/" component={ManagerImg} isClosed={false} />
-      <MyRoute exact path="/album-image/:id/edit" component={Image} isClosed />
-      <MyRoute exact path="/album-image/" component={Image} isClosed />
+      <MyRoute exact path="/" component={ManagerImg} isClosed />
+      <MyRoute exact path="/image/:id/edit" component={Image} isClosed />
+      <MyRoute exact path="/image/" component={Image} isClosed />
       <MyRoute exact path="/login/" component={Login} isClosed={false} />
       <MyRoute exact path="/register/" component={Register} isClosed={false} />
       <MyRoute path="*" component={Page404} />
